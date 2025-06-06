@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.ludogame.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets">
+    <name>Ludo Game</name>
+    <description>A modern Ludo board game</description>
+    <author email="dev@ludogame.com" href="https://ludogame.com">
+        Ludo Game Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <preference name="loglevel" value="DEBUG" />
+    <preference name="Orientation" value="portrait" />
+    <preference name="Fullscreen" value="true" />
+</widget>
