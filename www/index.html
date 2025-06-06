@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <title>VC LUDO</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1 class="game-title">VC LUDO</h1>
+        <div class="game-board">
+            <canvas id="gameBoard"></canvas>
+        </div>
+        <div class="controls">
+            <button id="rollDice" class="roll-button">Roll Dice</button>
+            <button id="toggleSound" class="sound-button">🔊</button>
+        </div>
+    </div>
+
+    <!-- Sound Effects -->
+    <audio id="diceRoll" src="res/sounds/dice.mp3"></audio>
+    <audio id="tokenMove" src="res/sounds/move.mp3"></audio>
+    <audio id="victory" src="res/sounds/victory.mp3"></audio>
+
+    <script src="cordova.js"></script>
+    <script src="game.js"></script>
+    <script>
+        document.addEventListener('deviceready', function() {
+            // Initialize game when Cordova is ready
+            window.game = new LudoGame();
+            
+            // Add touch event listeners
+            document.getElementById('rollDice').addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                window.game.rollDice();
+            });
+
+            document.getElementById('toggleSound').addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                const btn = e.target;
+                const isMuted = btn.textContent === '🔈';
+                btn.textContent = isMuted ? '🔊' : '🔈';
+                // Toggle sound logic here
+                Array.from(document.getElementsByTagName('audio')).forEach(audio => {
+                    audio.muted = !isMuted;
+                });
+            });
+
+            // Handle back button
+            document.addEventListener('backbutton', function(e) {
+                e.preventDefault();
+                if (confirm('Do you want to exit the game?')) {
+                    navigator.app.exitApp();
+                }
+            }, false);
+
+            // Handle screen orientation
+            screen.orientation.lock('portrait');
+        }, false);
+    </script>
+</body>
+</html>
