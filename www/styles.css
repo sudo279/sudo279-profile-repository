@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: fixed;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f0f0f0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    touch-action: manipulation;
+}
+
+.game-title {
+    font-size: 3rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    position: relative;
+    padding: 15px;
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+    animation: titleGlow 2s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+    0%, 100% {
+        filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5));
+    }
+    50% {
+        filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.8));
+    }
+}
+
+/* Responsive title size */
+@media (max-width: 480px) {
+    .game-title {
+        font-size: 2.5rem;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+    }
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    max-width: 600px;
+}
+
+.game-board {
+    width: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #f6f8fc 0%, #e9edf5 100%);
+    border-radius: 1rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 12px;
+    touch-action: none;
+}
+
+.controls {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.roll-button, .sound-button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(145deg, #2563eb, #1d4ed8);
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.sound-button {
+    padding: 15px;
+    background: linear-gradient(145deg, #4b5563, #374151);
+}
+
+.roll-button:active, .sound-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Token Animations */
+@keyframes moveToken {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.token {
+    animation: moveToken 0.3s ease-in-out;
+}
+
+/* Dice Animation */
+@keyframes rollDice {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.dice-rolling {
+    animation: rollDice 0.5s linear infinite;
+}
+
+/* Media Queries */
+@media (max-height: 600px) {
+    .game-container {
+        padding: 10px;
+    }
+    
+    .controls {
+        margin-top: 10px;
+    }
+    
+    .roll-button, .sound-button {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+}
+
+@media (orientation: landscape) {
+    .game-container {
+        flex-direction: row;
+        padding: 10px;
+    }
+    
+    .game-board {
+        height: 100%;
+        width: auto;
+    }
+    
+    .controls {
+        flex-direction: column;
+        height: 100%;
+        margin-top: 0;
+        margin-left: 20px;
+    }
+}
