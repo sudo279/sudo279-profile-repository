@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Ludo Game</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID" crossorigin="anonymous"></script>
+    <!-- Facebook Audience Network SDK -->
+    <script async src="https://connect.facebook.net/en_US/fbadnw.js"></script>
+    <!-- Google AdMob SDK -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR-ADMOB-ID"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Game Container -->
+    <div class="container mx-auto px-4 py-8">
+        <!-- Ad Banner Top -->
+        <div class="w-full h-20 bg-gray-200 mb-4 rounded-lg shadow-md flex items-center justify-center">
+            <!-- AdMob Banner Ad -->
+            <div id="admob-banner"></div>
+        </div>
+
+        <!-- Game Board -->
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-4">
+            <canvas id="gameBoard" class="w-full aspect-square"></canvas>
+        </div>
+
+        <!-- Controls -->
+        <div class="flex justify-between items-center mb-4">
+            <button id="rollDice" class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition-colors">
+                Roll Dice
+            </button>
+            <button id="toggleSound" class="bg-gray-600 text-white px-6 py-3 rounded-lg shadow hover:bg-gray-700 transition-colors">
+                🔊 Sound
+            </button>
+        </div>
+
+        <!-- Video Call Container -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div id="localVideo" class="bg-gray-800 rounded-lg aspect-video"></div>
+            <div id="remoteVideo" class="bg-gray-800 rounded-lg aspect-video"></div>
+        </div>
+
+        <!-- Interstitial Ad Container -->
+        <div id="interstitial-container" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <div class="bg-white p-4 rounded-lg">
+                <div id="interstitial-ad"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sound Effects - Using CDN hosted sounds -->
+    <audio id="diceRoll" src="https://assets.mixkit.co/active_storage/sfx/2003/2003-preview.mp3"></audio>
+    <audio id="tokenMove" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3"></audio>
+    <audio id="victory" src="https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3"></audio>
+    <audio id="background" src="https://assets.mixkit.co/active_storage/sfx/123/123-preview.mp3" loop></audio>
+
+    <!-- Game Script -->
+    <script src="game.js"></script>
+</body>
+</html>
